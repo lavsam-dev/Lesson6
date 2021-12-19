@@ -1,8 +1,8 @@
 package com.lavsam.lesson6.di
 
 import androidx.room.Room
-import com.lavsam.data.dataSource.local.SkyengDataSourceLocalImpl
-import com.lavsam.data.dataSource.remote.SkyengDataSourceRemoteImpl
+import com.lavsam.data.dataSource.local.VocabularyDataSourceLocalImpl
+import com.lavsam.data.dataSource.remote.VocabularyDataSourceRemoteImpl
 import com.lavsam.data.repository.local.RepositoryLocal
 import com.lavsam.data.repository.local.RepositoryLocalImpl
 import com.lavsam.data.repository.remote.RepositoryRemote
@@ -12,28 +12,30 @@ import com.lavsam.historyscreen.domain.interactor.HistoryInteractor
 import com.lavsam.historyscreen.presentation.viewModel.HistoryActivityViewModel
 import com.lavsam.lesson6.domain.interactor.MainInteractor
 import com.lavsam.lesson6.presentation.viewModel.MainActivityViewModel
-import com.lavsam.model.SkyengDataModel
+import com.lavsam.model.VocabularyDataModel
 import org.koin.dsl.module
+
+private const val NAME_LOCAL_DB = "HistoryDB"
 
 val application = module {
 
     single {
         Room.databaseBuilder(
-            get(), HistoryDataBase::class.java, "HistoryDB"
+            get(), HistoryDataBase::class.java, NAME_LOCAL_DB
         ).build()
     }
 
     single { get<HistoryDataBase>().historyDao() }
 
-    single<RepositoryRemote<List<SkyengDataModel>>> {
+    single<RepositoryRemote<List<VocabularyDataModel>>> {
         RepositoryRemoteImpl(
-            SkyengDataSourceRemoteImpl()
+            VocabularyDataSourceRemoteImpl()
         )
     }
 
-    single<RepositoryLocal<List<SkyengDataModel>>> {
+    single<RepositoryLocal<List<VocabularyDataModel>>> {
         RepositoryLocalImpl(
-            SkyengDataSourceLocalImpl(historyDao = get())
+            VocabularyDataSourceLocalImpl(historyDao = get())
         )
     }
 }

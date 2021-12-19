@@ -16,11 +16,12 @@ import com.lavsam.lesson6.presentation.view.fragment.SearchDialogFragment
 import com.lavsam.lesson6.presentation.viewModel.MainActivityViewModel
 import com.lavsam.lesson6.utils.convertMeaningsToString
 import com.lavsam.model.AppState
-import com.lavsam.model.SkyengDataModel
+import com.lavsam.model.VocabularyDataModel
 import com.lavsam.utils.network.isOnline
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val BOTTOM_SHEET_FRAGMENT_DIALOG_TAG = "74a54328-5d62-46bf-ab6b-cbf5fgt0-092395"
+private const val VIEWMODEL_INIT_FIRST = "The ViewModel should be initialised first"
 
 class MainActivity : BaseActivity<AppState, MainInteractor>() {
 
@@ -41,7 +42,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
 
     private val onListItemClickListener: MainActivityAdapter.OnListItemClickListener =
         object : MainActivityAdapter.OnListItemClickListener {
-            override fun onItemClick(data: SkyengDataModel) {
+            override fun onItemClick(data: VocabularyDataModel) {
                 startActivity(
                     DescriptionActivity.getIntent(
                         this@MainActivity,
@@ -75,7 +76,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
         initViews()
     }
 
-    override fun setDataToAdapter(data: List<SkyengDataModel>) {
+    override fun setDataToAdapter(data: List<VocabularyDataModel>) {
         adapter.setData(data)
     }
 
@@ -96,7 +97,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
 
     private fun initViewModel() {
         if (binding.mainActivityRecyclerview.adapter != null) {
-            throw IllegalStateException("The ViewModel should be initialised first")
+            throw IllegalStateException(VIEWMODEL_INIT_FIRST)
         }
         val mainActivityViewModel: MainActivityViewModel by viewModel()
         viewModel = mainActivityViewModel

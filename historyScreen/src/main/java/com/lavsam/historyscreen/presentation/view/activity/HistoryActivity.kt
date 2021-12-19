@@ -7,7 +7,7 @@ import com.lavsam.historyscreen.domain.interactor.HistoryInteractor
 import com.lavsam.historyscreen.presentation.adapter.HistoryActivityAdapter
 import com.lavsam.historyscreen.presentation.viewModel.HistoryActivityViewModel
 import com.lavsam.model.AppState
-import com.lavsam.model.SkyengDataModel
+import com.lavsam.model.VocabularyDataModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HistoryActivity : BaseActivity<AppState, HistoryInteractor>() {
@@ -33,7 +33,7 @@ class HistoryActivity : BaseActivity<AppState, HistoryInteractor>() {
         viewModel.getData("", false)
     }
 
-    override fun setDataToAdapter(data: List<SkyengDataModel>) {
+    override fun setDataToAdapter(data: List<VocabularyDataModel>) {
         adapter.setData(data)
     }
 

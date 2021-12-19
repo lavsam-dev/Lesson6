@@ -2,7 +2,7 @@ package com.lavsam.historyscreen
 
 import com.lavsam.model.AppState
 import com.lavsam.model.Meanings
-import com.lavsam.model.SkyengDataModel
+import com.lavsam.model.VocabularyDataModel
 
 fun parseLocalSearchResults(appState: AppState): AppState =
     AppState.Success(mapResult(appState, false))
@@ -10,8 +10,8 @@ fun parseLocalSearchResults(appState: AppState): AppState =
 private fun mapResult(
     appState: AppState,
     isOnline: Boolean
-): List<SkyengDataModel> {
-    val newSearchResults = arrayListOf<SkyengDataModel>()
+): List<VocabularyDataModel> {
+    val newSearchResults = arrayListOf<VocabularyDataModel>()
     when (appState) {
         is AppState.Success -> {
             getSuccessResultData(appState, isOnline, newSearchResults)
@@ -24,35 +24,35 @@ private fun mapResult(
 private fun getSuccessResultData(
     appState: AppState.Success,
     isOnline: Boolean,
-    newDataModels: ArrayList<SkyengDataModel>
+    newDataModels: ArrayList<VocabularyDataModel>
 ) {
-    val skyengDataModel: List<SkyengDataModel> = appState.data as List<SkyengDataModel>
-    if (skyengDataModel.isNotEmpty()) {
+    val vocabularyDataModel: List<VocabularyDataModel> = appState.data as List<VocabularyDataModel>
+    if (vocabularyDataModel.isNotEmpty()) {
         if (isOnline) {
-            for (searchResult in skyengDataModel) {
+            for (searchResult in vocabularyDataModel) {
                 parseOnlineResult(searchResult, newDataModels)
             }
         } else {
-            for (searchResult in skyengDataModel) {
-                newDataModels.add(SkyengDataModel(searchResult.text, arrayListOf()))
+            for (searchResult in vocabularyDataModel) {
+                newDataModels.add(VocabularyDataModel(searchResult.text, arrayListOf()))
             }
         }
     }
 }
 
 private fun parseOnlineResult(
-    skyengDataModel: SkyengDataModel,
-    newDataModels: ArrayList<SkyengDataModel>
+    vocabularyDataModel: VocabularyDataModel,
+    newDataModels: ArrayList<VocabularyDataModel>
 ) {
-    if (!skyengDataModel.text.isNullOrBlank() && !skyengDataModel.meanings.isNullOrEmpty()) {
+    if (!vocabularyDataModel.text.isNullOrBlank() && !vocabularyDataModel.meanings.isNullOrEmpty()) {
         val newMeanings = arrayListOf<Meanings>()
-        for (meaning in skyengDataModel.meanings!!) {
+        for (meaning in vocabularyDataModel.meanings!!) {
             if (meaning.translation != null && !meaning.translation!!.translation.isNullOrBlank()) {
                 newMeanings.add(Meanings(meaning.translation, meaning.imageUrl))
             }
         }
         if (newMeanings.isNotEmpty()) {
-            newDataModels.add(SkyengDataModel(skyengDataModel.text, newMeanings))
+            newDataModels.add(VocabularyDataModel(vocabularyDataModel.text, newMeanings))
         }
     }
 }

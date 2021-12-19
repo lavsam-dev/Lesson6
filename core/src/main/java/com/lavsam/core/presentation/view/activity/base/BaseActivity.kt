@@ -9,7 +9,7 @@ import com.lavsam.core.databinding.LoadingLayoutBinding
 import com.lavsam.core.domain.interactor.Interactor
 import com.lavsam.core.presentation.viewModel.base.BaseViewModel
 import com.lavsam.model.AppState
-import com.lavsam.model.SkyengDataModel
+import com.lavsam.model.VocabularyDataModel
 import com.lavsam.utils.network.isOnline
 import com.lavsam.utils.ui.AlertDialogFragment
 
@@ -96,5 +96,5 @@ abstract class BaseActivity<T : AppState, I : Interactor<T>> : AppCompatActivity
         return supportFragmentManager.findFragmentByTag(DIALOG_FRAGMENT_TAG) == null
     }
 
-    abstract fun setDataToAdapter(data: List<SkyengDataModel>)
+    abstract fun setDataToAdapter(data: List<VocabularyDataModel>)
 }

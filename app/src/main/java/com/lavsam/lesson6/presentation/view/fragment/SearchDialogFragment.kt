@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.lavsam.lesson6.databinding.SearchDialogFragmentBinding
 
+private const val SEARCH_EDIT_TEXT = ""
+
 class SearchDialogFragment : BottomSheetDialogFragment() {
 
     private var _binding: SearchDialogFragmentBinding? = null
@@ -67,7 +69,7 @@ class SearchDialogFragment : BottomSheetDialogFragment() {
 
     private fun addOnClearClickListener() {
         binding.clearTextImageview.setOnClickListener {
-            binding.searchEditText.setText("")
+            binding.searchEditText.setText(SEARCH_EDIT_TEXT)
             binding.searchButtonTextview.isEnabled = false
         }
     }

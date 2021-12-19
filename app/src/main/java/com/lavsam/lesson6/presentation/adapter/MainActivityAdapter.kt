@@ -7,17 +7,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.lavsam.lesson6.R
 import com.lavsam.lesson6.utils.convertMeaningsToString
-import com.lavsam.model.SkyengDataModel
+import com.lavsam.model.VocabularyDataModel
 import kotlinx.android.synthetic.main.activity_main_recyclerview_item.view.*
 
 class MainActivityAdapter(
     private var onListItemClickListener: OnListItemClickListener
 ) : RecyclerView.Adapter<MainActivityAdapter.RecyclerItemViewHolder>() {
 
-    private var data: List<SkyengDataModel> = arrayListOf()
+    private var data: List<VocabularyDataModel> = arrayListOf()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(data: List<SkyengDataModel>) {
+    fun setData(data: List<VocabularyDataModel>) {
         this.data = data
         notifyDataSetChanged()
     }
@@ -37,7 +37,7 @@ class MainActivityAdapter(
 
     inner class RecyclerItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bind(data: SkyengDataModel) {
+        fun bind(data: VocabularyDataModel) {
             if (layoutPosition != RecyclerView.NO_POSITION) {
                 itemView.header_textview_recycler_item.text = data.text
                 itemView.description_textview_recycler_item.text =
@@ -47,11 +47,11 @@ class MainActivityAdapter(
         }
     }
 
-    private fun openInNewWindow(listItemData: SkyengDataModel) {
+    private fun openInNewWindow(listItemData: VocabularyDataModel) {
         onListItemClickListener.onItemClick(listItemData)
     }
 
     interface OnListItemClickListener {
-        fun onItemClick(data: SkyengDataModel)
+        fun onItemClick(data: VocabularyDataModel)
     }
 }
