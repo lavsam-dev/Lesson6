@@ -1,12 +1,12 @@
 package com.lavsam.data.repository.remote
 
-import com.lavsam.data.dataSource.remote.SkyengDataSourceRemote
-import com.lavsam.model.SkyengDataModel
+import com.lavsam.data.dataSource.remote.VocabularyDataSourceRemote
+import com.lavsam.model.VocabularyDataModel
 
 class RepositoryRemoteImpl(
-    private val skyengDataSource: SkyengDataSourceRemote<List<SkyengDataModel>>
-) : RepositoryRemote<List<SkyengDataModel>> {
+    private val vocabularyDataSource: VocabularyDataSourceRemote<List<VocabularyDataModel>>
+) : RepositoryRemote<List<VocabularyDataModel>> {
 
-    override suspend fun getData(word: String): List<SkyengDataModel> =
-        skyengDataSource.getData(word)
+    override suspend fun getData(word: String): List<VocabularyDataModel> =
+        vocabularyDataSource.getData(word)
 }

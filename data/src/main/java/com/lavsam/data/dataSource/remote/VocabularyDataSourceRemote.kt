@@ -1,5 +1,5 @@
 package com.lavsam.data.dataSource.remote
 
-interface SkyengDataSourceRemote<T> {
+interface VocabularyDataSourceRemote<T> {
     suspend fun getData(word: String): T
 }

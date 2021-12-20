@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.lavsam.historyscreen.R
-import com.lavsam.model.SkyengDataModel
+import com.lavsam.model.VocabularyDataModel
 import kotlinx.android.synthetic.main.activity_history_recyclerview_item.view.*
 
 class HistoryActivityAdapter :
     RecyclerView.Adapter<HistoryActivityAdapter.RecyclerItemViewHolder>() {
 
-    private var data: List<SkyengDataModel> = arrayListOf()
+    private var data: List<VocabularyDataModel> = arrayListOf()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(data: List<SkyengDataModel>) {
+    fun setData(data: List<VocabularyDataModel>) {
         this.data = data
         notifyDataSetChanged()
     }
@@ -36,7 +36,7 @@ class HistoryActivityAdapter :
 
     inner class RecyclerItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bind(data: SkyengDataModel) {
+        fun bind(data: VocabularyDataModel) {
             if (layoutPosition != RecyclerView.NO_POSITION) {
                 itemView.header_history_textview_recycler_item.text = data.text
                 itemView.setOnClickListener {

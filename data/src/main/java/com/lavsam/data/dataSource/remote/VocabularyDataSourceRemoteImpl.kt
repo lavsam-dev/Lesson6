@@ -3,7 +3,7 @@ package com.lavsam.data.dataSource.remote
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.lavsam.data.dataSource.api.ApiService
 import com.lavsam.data.dataSource.interceptor.BaseInterceptor
-import com.lavsam.model.SkyengDataModel
+import com.lavsam.model.VocabularyDataModel
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -12,9 +12,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 private const val BASE_URL = "https://dictionary.skyeng.ru/api/public/v1/"
 
-class SkyengDataSourceRemoteImpl : SkyengDataSourceRemote<List<SkyengDataModel>> {
+class VocabularyDataSourceRemoteImpl : VocabularyDataSourceRemote<List<VocabularyDataModel>> {
 
-    override suspend fun getData(word: String): List<SkyengDataModel> =
+    override suspend fun getData(word: String): List<VocabularyDataModel> =
         getService(BaseInterceptor.interceptor).searchAsync(word).await()
 
     private fun getService(interceptor: Interceptor): ApiService =

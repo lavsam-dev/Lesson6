@@ -1,17 +1,17 @@
 package com.lavsam.data.repository.local
 
-import com.lavsam.data.dataSource.local.SkyengDataSourceLocal
+import com.lavsam.data.dataSource.local.VocabularyDataSourceLocal
 import com.lavsam.model.AppState
-import com.lavsam.model.SkyengDataModel
+import com.lavsam.model.VocabularyDataModel
 
 class RepositoryLocalImpl(
-    private val skyengDataSource: SkyengDataSourceLocal<List<SkyengDataModel>>
-) : RepositoryLocal<List<SkyengDataModel>> {
+    private val vocabularyDataSource: VocabularyDataSourceLocal<List<VocabularyDataModel>>
+) : RepositoryLocal<List<VocabularyDataModel>> {
 
-    override suspend fun getData(word: String): List<SkyengDataModel> =
-        skyengDataSource.getData(word)
+    override suspend fun getData(word: String): List<VocabularyDataModel> =
+        vocabularyDataSource.getData(word)
 
     override suspend fun saveToDB(appState: AppState) {
-        skyengDataSource.saveToDB(appState)
+        vocabularyDataSource.saveToDB(appState)
     }
 }

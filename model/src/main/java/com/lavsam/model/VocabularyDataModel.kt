@@ -8,7 +8,7 @@ private const val GSON_KEY_TRANSLATION = "translation"
 private const val GSON_KEY_IMAGE_URL = "imageUrl"
 private const val GSON_KEY_TRANSLATION_TEXT = "text"
 
-class SkyengDataModel(
+class VocabularyDataModel(
     @SerializedName(GSON_KEY_TEXT) val text: String?,
     @SerializedName(GSON_KEY_MEANINGS) val meanings: List<Meanings>?
 )
